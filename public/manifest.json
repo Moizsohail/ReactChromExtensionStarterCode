@@ -1,0 +1,28 @@
+{
+  "manifest_version": 3,
+  "name": "CustomExtension",
+  "version": "0.0.1",
+  "action": {
+    "default_popup": "index.html"
+  },
+  "content_scripts": [
+    {
+      "matches": ["<all_urls>"],
+      "js": ["./static/js/content.js"],
+      "all_frames": false,
+      "run_at": "document_end"
+    }
+  ],
+  "background": { "service_worker": "./static/js/background.js" },
+  "commands": {
+    "execute": {
+      "suggested_key": {
+        "default": "Ctrl+Shift+Y",
+        "mac": "Command+MacCtrl+Y"
+      },
+      "description": "Run execute on the current page."
+    }
+  },
+  "permissions": ["storage", "activeTab", "scripting", "tabs"],
+  "host_permissions": ["<all_urls>"]
+}
